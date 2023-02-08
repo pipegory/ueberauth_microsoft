@@ -44,7 +44,7 @@ defmodule Ueberauth.Strategy.Microsoft.OAuth do
 
   defp defaults(config, opts) do
     # tenant_id = config[:tenant_id] || "common"
-    tenant_id = opts[:tenant_id] || config[:tenant_id] || "common"
+    tenant_id = opts[:tenant_id]
     [
       strategy: __MODULE__,
       site: "https://graph.microsoft.com",
