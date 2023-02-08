@@ -10,7 +10,7 @@ defmodule Ueberauth.Strategy.Microsoft.OAuth do
     json_library = Ueberauth.json_library()
 
     config
-    |> defaults()
+    |> defaults(opts)
     |> Keyword.merge(config)
     |> Keyword.merge(opts)
     |> Client.new()
@@ -42,9 +42,9 @@ defmodule Ueberauth.Strategy.Microsoft.OAuth do
     |> AuthCode.get_token(params, headers)
   end
 
-  defp defaults(config) do
-    tenant_id = config[:tenant_id] || "common"
-
+  defp defaults(config, opts) do
+    # tenant_id = config[:tenant_id] || "common"
+    tenant_id = opts[:tenant_id] || config[:tenant_id] || "common"
     [
       strategy: __MODULE__,
       site: "https://graph.microsoft.com",
